@@ -16,13 +16,16 @@ frontend  hendrix-frontend
         default_backend hendrix-backend
 backend hendrix-backend
         balance roundrobin
-        server 141836-web-01 54.237.45.87:80 check
-        server 141836-web-02 18.210.33.195:80 check
+        server 141836-web-01 34.224.16.103:80 check
+        server 141836-web-02 34.239.250.26:80 check
 "
 echo "$server_config" | sudo tee -a /etc/haproxy/haproxy.cfg
 
 # enable haproxy to be started by init script
-
 echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
 
+# test for syntax errors
+sudo haproxy -c
+
+# restart haproxy after updating the settings
 sudo service haproxy restart
