@@ -30,4 +30,3 @@ if __name__ == "__main__":
 
     with open('{}.json'.format(employeeId), 'w') as file:
         json.dump(dictionary, file)
-
