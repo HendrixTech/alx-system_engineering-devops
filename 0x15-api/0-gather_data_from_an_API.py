@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Accessing a REST API for todo lists of employees """
 
+
 import requests
 import sys
 
@@ -10,7 +11,7 @@ if __name__ == "__main__":
 
     userResponse = requests.get(url + "users/{}".format(employeeId))
     employeeName = userResponse.json().get('name')
-    
+
     todoUrl = url + "/users/{}/todos".format(employeeId)
     todoResponse = requests.get(todoUrl)
 
@@ -23,8 +24,8 @@ if __name__ == "__main__":
             completed.append(task)
             done += 1
 
-    print("Eployee {} is done with tasks({}/{}):".format(employeeName,
-        done, len(tasks)))
+    print("Eployee {} is done with tasks({}/{}):"
+          .format(employeeName, done, len(tasks)))
 
     for complete in completed:
         print("\t {}".format(complete.get('title')))
